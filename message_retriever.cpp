@@ -3,13 +3,6 @@
 #include <iostream>
 using namespace std;
 
-/*
- * it's possible not to get a message delimiter
- * either you'd get an upper case which is a symobl
- * or you get a lower case followed by upper case
- * save previous char
- * if Upper case encountered, if previous char is lowercase it's part of header_str
- */
 
 
 
