@@ -8,7 +8,7 @@ void message_retriever::run()
     // TODO : implement ignoring packets based on time
     // TODO : implement ignoring messages based on symbol
     // TODO : implement getting message header here and only creating message if symbol needed
-    std::ifstream fs(file_path);
+
     if (!fs.is_open()) return;
     while (fs >> c) {
         header_str += c;
@@ -44,17 +44,6 @@ void message_retriever::run()
         }
         previous_char = c;
     }
-    cout << "Strategy pnl: " << strat.get_dollars() << endl;
-    cout << "entry price " << strat.entry_price << endl;
-    cout << "exit price " << strat.exit_price << endl;
-
-    // std::ofstream out("out.txt");
-    // std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
-    // std::cout.rdbuf(out.rdbuf()); //redirect std::cout to out.txt!
-    // for (auto& a : symbols) cout << a << endl;
-    char z;
-    cin >> z;
-
 }
 
 void message_retriever::process_packet_delimiter(const char&)
@@ -63,7 +52,6 @@ void message_retriever::process_packet_delimiter(const char&)
     if (mp != nullptr) {
         mp->message_complete();
         messages.push_back(mp);
-        strat.on_message(mp);
         if (mp->encountered_error) {
             std::ofstream out("out.txt");
             std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf
@@ -87,7 +75,6 @@ void message_retriever::process_message_delimiter(const char&)
     if (mp != nullptr) {
         mp->message_complete();
         messages.push_back(mp);
-        strat.on_message(mp);
         if (mp->encountered_error) {
             std::ofstream out("out.txt");
             std::streambuf *coutbuf = std::cout.rdbuf(); //save old buf

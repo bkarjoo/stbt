@@ -4,8 +4,6 @@
 #include <iostream>
 using std::cout; using std::endl;
 
-
-
 void message::add_message_char(const char& c)
 {
 
@@ -22,7 +20,8 @@ void message::message_complete()
     if (field_code_value == "") register_simple(); else register_complex();
 }
 
-void message::process_field_delimiter(const char& c) {
+void message::process_field_delimiter(const char& c)
+{
     if (field_value == "" && field_code_value == "" && field_code != 0) {
         // the field delimiter is an exchange code
     } else if (c != 'f' && field_code == 'f' && (field_code_value == "60" || field_code_value == "52") && field_value == "") {
@@ -37,7 +36,6 @@ void message::process_field_delimiter(const char& c) {
     }
 }
 
-
 void message::add_field_char(const char& c)
 {
     if (c == ',')
@@ -46,7 +44,8 @@ void message::add_field_char(const char& c)
         field_value += c;
 }
 
-void message::register_simple() {
+void message::register_simple()
+{
     switch (field_code) {
         case 'a':
             ask_price = set_price(field_value);
@@ -132,7 +131,8 @@ void message::register_simple() {
     }
 }
 
-void message::register_complex() {
+void message::register_complex()
+{
     switch (field_code) {
         case 'f':
             register_complex_f();
@@ -146,7 +146,8 @@ void message::register_complex() {
     }
 }
 
-void message::register_complex_f() {
+void message::register_complex_f()
+{
     unsigned short int fcv = 0;
     try {
         fcv = stoi(field_code_value);
@@ -447,7 +448,8 @@ void message::register_complex_f() {
     }
 }
 
-void message::register_complex_g() {
+void message::register_complex_g()
+{
     unsigned short int fcv = 0;
     try {
         fcv = stoi(field_code_value);
@@ -735,12 +737,13 @@ void message::register_complex_g() {
     }
 }
 
-
-void message::register_complex_z() {
+void message::register_complex_z()
+{
     cout << "Z FIELD NOT IMPLEMENTED" << endl;
 }
 
-void message::set_precision() {
+void message::set_precision()
+{
     try {
         precision = stoi(field_value);
     } catch (...) {
