@@ -1,0 +1,3 @@
+C:/Users/b.karjoo/CLionProjects/STBT/cmake-build-debug/CMakeFiles/STBT.dir
+C:/Users/b.karjoo/CLionProjects/STBT/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/b.karjoo/CLionProjects/STBT/cmake-build-debug/CMakeFiles/rebuild_cache.dir

@@ -3,9 +3,6 @@
 #include <iostream>
 using namespace std;
 
-
-
-
 void message_retriever::run()
 {
     // TODO : implement ignoring packets based on time
